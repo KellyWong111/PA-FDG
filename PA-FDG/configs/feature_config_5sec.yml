@@ -1,0 +1,88 @@
+n_jobs: 8
+srate: 256  # 原始采样率
+bp_mode: False
+denoise_mode: False
+nf_mode: True
+debug_mode: False
+
+feature_output:
+  - coherences
+  - rellogpower
+  - asymm_abs
+  - autocorrmat
+  - arerror
+  - rqachannel_t2e3
+
+features:
+  # Coherences
+  - preproc:
+      - Windower:
+          window: 5   # 改为5秒 (匹配SGSTAN)
+          srate: 256   # 保持原采样率256Hz
+      - Coherences:
+          window: 1024  # nperseg (4秒窗口 @ 256Hz)
+          overlap: 0.5
+          fs: 256
+          frequencies: [[0.5, 4], [4, 8], [8, 12], [12, 30], [30, 80]]  # 增加高频段
+          aggregate: False
+          return_global_median: True
+
+  # Relative Log Power
+  - preproc:
+      - Windower:
+          window: 5   # 改为5秒
+          srate: 256
+      - RelativeLogPower:
+          window: 1024  # 4秒窗口 @ 256Hz
+          overlap: 0.5
+          fs: 256
+          frequencies: [[0.5, 4], [4, 8], [8, 12], [12, 30], [30, 80]]  # 增加高频段
+
+  # Asymmetry Features
+  - preproc:
+      - Windower:
+          window: 5   # 改为5秒
+          srate: 256
+      - AsymmetryFeatures:
+          abs_flag: True
+
+  # AutoCorrelation
+  - preproc:
+      - Windower:
+          window: 5   # 改为5秒
+          srate: 256
+      - AutoCorrMat:
+          order: 6
+          subsample: 8
+          eigenmode: True
+
+  # AR Error
+  - preproc:
+      - Windower:
+          window: 5   # 改为5秒
+          srate: 256
+      - ARError:
+          subsample: 8
+          order: 5
+
+  # RQA Channel
+  - preproc:
+      - Windower:
+          window: 5   # 改为5秒
+          srate: 256
+      - rqa_channel:
+          hp: 0.5
+          lp: 4
+          tau: 2
+          emb_dim: 3
+          sfreq: 256
+
+imports:
+  utils.preproc:
+    - Windower
+    - Coherences
+    - RelativeLogPower
+    - AsymmetryFeatures
+    - AutoCorrMat
+    - ARError
+    - rqa_channel
