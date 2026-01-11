@@ -4,7 +4,7 @@
 [![PyTorch 1.12+](https://img.shields.io/badge/pytorch-1.12+-red.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Official implementation of **"Cross-Subject Seizure Prediction via Patient-Adaptive Feature Dependency Graph"** (IEEE JBHI).
+Official implementation of **"Cross-Subject Seizure Prediction via Patient-Adaptive Feature Dependency Graph"**.
 
 ## Overview
 
