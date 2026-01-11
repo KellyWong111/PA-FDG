@@ -13,7 +13,7 @@ PA-FDG addresses cross-subject seizure prediction by:
 2. **Task-driven graph learning**: Learning adjacency matrices end-to-end via MLP edge predictor, without predefined connectivity
 3. **Multi-prototype few-shot adaptation**: Rapid personalization using data from the first recorded seizure
 
-![Framework](figures/framework.png)
+
 
 ## Results
 
@@ -29,7 +29,7 @@ Under leave-one-subject-out (LOSO) evaluation on CHB-MIT (16 patients):
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/PA-FDG.git
+git clone https://github.com/KellyWong111/PA-FDG.git
 cd PA-FDG
 
 # Create conda environment
@@ -116,18 +116,7 @@ We extract a 418-dimensional multi-modal feature vector from each 5-second EEG w
 | RQA Measures | 129 | 6 RQA metrics × 21 channels + 3 global |
 | Global Coherence | 1 | Median pairwise coherence |
 
-## Citation
 
-If you find this code useful, please cite our paper:
-
-```bibtex
-@article{wang2025pafdg,
-  title={Cross-Subject Seizure Prediction via Patient-Adaptive Feature Dependency Graph},
-  author={Wang, Yijing and Dai, Anqi and Guo, Shangqi},
-  journal={IEEE Journal of Biomedical and Health Informatics},
-  year={2025}
-}
-```
 
 ## License
 
